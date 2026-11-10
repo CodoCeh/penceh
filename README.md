@@ -33,6 +33,30 @@
 
 Ограничения Linux: нужна glibc 2.39 или новее (Ubuntu 24.04, Debian 13); на Wayland нет рамки режима «весь экран».
 
+## Скачать
+
+Последняя версия: [Releases](https://github.com/CodoCeh/penceh/releases/latest). Контрольные суммы лежат рядом, в `SHA256SUMS.txt`.
+
+**macOS (Apple Silicon)** — `penceh-macos-arm64.zip`:
+
+```
+unzip penceh-macos-arm64.zip -d ~/Applications
+xattr -dr com.apple.quarantine ~/Applications/PenCeh.app
+mkdir -p ~/.local/bin && ln -sf ~/Applications/PenCeh.app/Contents/MacOS/penceh ~/.local/bin/penceh
+~/.local/bin/penceh permissions grant
+```
+
+Вторая команда снимает блокировку macOS на программу из интернета. Последняя открывает настройки: включите PenCeh в «Универсальный доступ» и «Запись экрана и системного звука».
+
+**Windows 10 и новее (x64)** — `penceh-windows-x64.zip`: распакуйте, запускайте `penceh.exe`. Windows может показать предупреждение SmartScreen («Подробнее» → «Выполнить в любом случае»): программа пока без цифровой подписи.
+
+**Linux (x64, glibc 2.39 и новее)** — `penceh-linux-x64.tar.gz`:
+
+```
+tar xzf penceh-linux-x64.tar.gz
+install -m 755 penceh ~/.local/bin/penceh
+```
+
 ## Подключение
 
 Подходит любой агент, который умеет MCP по stdio: Claude Code, Codex, Grok, opencode, Cursor, Antigravity. Команда запуска сервера:
@@ -46,6 +70,8 @@ penceh mcp
 ```
 claude mcp add -s user penceh -- ~/.local/bin/penceh mcp
 ```
+
+Проверка: `penceh --version`.
 
 ## Проверено
 
